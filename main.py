@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.widgets import CheckButtons
 from copy import deepcopy
+import math
 
 def avgArithmetic(a, b):
     return (a + b) / 2
@@ -134,5 +135,97 @@ def func(label):
     plt.draw()
 
 check.on_clicked(func)
+
+minAbsErrorSimple = math.inf
+minAbsErrorWeighted = math.inf
+minAbsErrorExp = math.inf
+minAbsErrorModified = math.inf
+
+maxAbsErrorSimple = 0
+maxAbsErrorWeighted = 0
+maxAbsErrorExp = 0
+maxAbsErrorModified = 0
+
+minRelErrorSimple = math.inf
+minRelErrorWeighted = math.inf
+minRelErrorExp = math.inf
+minRelErrorModified = math.inf
+
+maxRelErrorSimple = 0
+maxRelErrorWeighted = 0
+maxRelErrorExp = 0
+maxRelErrorModified = 0
+
+for i in range(1, len(sExeact)):
+    minAbsErrorSimple = min(minAbsErrorSimple, abs(sExeact[i] - sSimple[i]))
+    minAbsErrorWeighted = min(minAbsErrorWeighted, abs(sExeact[i] - sWeighted[i]))
+    minAbsErrorExp = min(minAbsErrorExp, abs(sExeact[i] - sExp[i]))
+    minAbsErrorModified = min(minAbsErrorModified, abs(sExeact[i] - sModified[i]))
+
+    maxAbsErrorSimple = max(maxAbsErrorSimple, abs(sExeact[i] - sSimple[i]))
+    maxAbsErrorWeighted = max(maxAbsErrorWeighted, abs(sExeact[i] - sWeighted[i]))
+    maxAbsErrorExp = max(maxAbsErrorExp, abs(sExeact[i] - sExp[i]))
+    maxAbsErrorModified = max(maxAbsErrorModified, abs(sExeact[i] - sModified[i]))
+
+    minRelErrorSimple = min(minRelErrorSimple, abs(1 - sExeact[i] / abs(sExeact[i] - sSimple[i])))
+    minRelErrorWeighted = min(minRelErrorWeighted, abs(1 - sExeact[i] / abs(sExeact[i] - sWeighted[i])))
+    minRelErrorExp = min(minRelErrorExp, abs(1 - sExeact[i] / abs(sExeact[i] - sExp[i])))
+    minRelErrorModified = min(minRelErrorModified, abs(1 - sExeact[i] / abs(sExeact[i] - sModified[i])))
+    
+    maxRelErrorSimple = max(maxRelErrorSimple, abs(1 - sExeact[i] / abs(sExeact[i] - sSimple[i])))
+    maxRelErrorWeighted = max(maxRelErrorWeighted, abs(1 - sExeact[i] / abs(sExeact[i] - sWeighted[i])))
+    maxRelErrorExp = max(maxRelErrorExp, abs(1 - sExeact[i] / abs(sExeact[i] - sExp[i])))
+    maxRelErrorModified = max(maxRelErrorModified, abs(1 - sExeact[i] / abs(sExeact[i] - sModified[i])))
+
+print('minAbsErrorSimple: ', end = "")
+print(minAbsErrorSimple)
+
+print('minAbsErrorWeighted: ', end = "")
+print(minAbsErrorWeighted)
+
+print('minAbsErrorExp: ', end = "")
+print(minAbsErrorExp)
+
+print('minAbsErrorModified: ', end = "")
+print(minAbsErrorModified)
+
+
+print('maxRelErrorSimple: ', end = "")
+print(maxRelErrorSimple)
+
+print('maxRelErrorWeighted: ', end = "")
+print(maxRelErrorWeighted)
+
+print('maxRelErrorExp: ', end = "")
+print(maxRelErrorExp)
+
+print('maxRelErrorModified: ', end = "")
+print(maxRelErrorModified)
+
+
+print('minRelErrorSimple: ', end = "")
+print(minRelErrorSimple)
+
+print('minRelErrorWeighted: ', end = "")
+print(minRelErrorWeighted)
+
+print('minRelErrorExp: ', end = "")
+print(minRelErrorExp)
+
+print('minRelErrorModified: ', end = "")
+print(minRelErrorModified)
+
+
+print('maxAbsErrorSimple: ', end = "")
+print(maxAbsErrorSimple)
+
+print('maxAbsErrorWeighted: ', end = "")
+print(maxAbsErrorWeighted)
+
+print('maxAbsErrorExp: ', end = "")
+print(maxAbsErrorExp)
+
+print('maxAbsErrorModified: ', end = "")
+print(maxAbsErrorModified)
 
 plt.show()
